@@ -34,7 +34,7 @@ Menu::Menu(Admin* admi,QWidget *parent) :
                                     "QPushButton:hover{background-color: rgb(22,218,208);}"//hover
                                     "QPushButton:pressed{background-color: rgb(17,171,164);}"//pressed
                                     "border:2px solid rgb(20,196,188);");//边框粗细-颜色-圆角设置
-
+this->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(240,255,255, 255), stop:1 rgba(240,255,255, 255));");
 }
 
 Menu::~Menu()
