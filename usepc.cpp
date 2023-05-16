@@ -77,13 +77,25 @@ void UsePC::on_change_mode_clicked()
         student->finish_worktime();
         student->status = Student::status::NORMAL;
         string s = student->name + "在" + student->toNormalTime(student->finish_time) + " 结束上机！";
+        s+= "\n共消费" + to_string(student->last_cost) + "元";
+        s+= "\n可用余额为" + to_string(student->remain) + "元。";
+        if(student->remain<=0)
+            s+="\n余额不足请联系管理员充值！";
         QMessageBox messageBox;
         QString qstr = QString::fromStdString(s);
         messageBox.information(0,"结果",qstr.fromStdString(s));
         messageBox.setFixedSize(500,200);
         }
+    }else{
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","出错了");
+        messageBox.setFixedSize(500,200);
+        this->close();
     }
-
+    //重置清空
+    this->student = nullptr;
+    ui->enter_id->clear();
+    ui->change_mode->setText("功能");
 }
 
 

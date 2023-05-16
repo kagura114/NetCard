@@ -20,11 +20,13 @@ public:
     string		name;					//姓名
     string		SchoolID;				//学号
     double		recharge	=10.0;		//充值金额
-    double		remain		=0.0;		//余额
+    double		remain		=10.0;		//余额
     double		cost		=0.0;		//花费
     string		password	="";		//密码
     bool		states		=false;		//上机状态
     bool		inmenu		=false;
+
+    double      last_cost   =0;         //上次消费
     enum place{
         classroom,
         dormitory,
