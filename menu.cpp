@@ -7,6 +7,8 @@ Menu::Menu(Admin* admi,QWidget *parent) :
 {
     this->admin = admi;
     ui->setupUi(this);
+    refresh_ui();
+
     ui->AddStudent->setStyleSheet("QPushButton{font: 25 14pt '微软雅黑 regular';color: rgb(0,0,0);background-color: rgb(255,248,220);"
                                     "border: 2px groove gray;border-radius:15px;padding:2px 4px;border-style: outset;}"
                                     "QPushButton:hover{background-color: rgb(22,218,208);}"//hover
@@ -40,16 +42,27 @@ Menu::~Menu()
     delete ui;
 }
 
+void Menu::refresh_ui(){
+    if (admin->isLogin())
+        ui->label->setText("[管理员]功能列表");
+    else
+        ui->label->setText("功能列表");
+}
+
 void Menu::on_AddStudent_clicked()
 {
     //打开添加学生页面
     auto* c = new AddStudent(this->admin);
+    refresh_ui();
+
 }
 
 
 void Menu::on_FreezenUnF_clicked()
 {
     auto *f = new Freeze(admin);
+    refresh_ui();
+
 }
 
 
@@ -67,12 +80,16 @@ void Menu::on_SaveData_clicked()
         messageBox.setFixedSize(500,200);
     }
     admin->status = Admin::LOGOUT;//最后登出
+    refresh_ui();
+
 }
 
 
 void Menu::on_UsenUnuse_clicked()
 {
     auto *v = new UsePC(admin);
+    refresh_ui();
+
 
 }
 
@@ -80,5 +97,7 @@ void Menu::on_UsenUnuse_clicked()
 void Menu::on_ViewData_clicked()
 {
     auto *v = new ViewStudentInfo(admin);
+    refresh_ui();
+
 }
 

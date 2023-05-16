@@ -66,6 +66,21 @@ void UsePC::on_change_mode_clicked()
         QString qstr = QString::fromStdString(s);
         messageBox.information(0,"结果",qstr.fromStdString(s));
         messageBox.setFixedSize(500,200);
+    }else if(ui->change_mode->text()=="下机"){
+        if(!admin->isLogin()){  //需要登录
+            QMessageBox messageBox;
+            messageBox.critical(0,"Error","请先登录");
+            messageBox.setFixedSize(500,200);
+            auto *c = new EnterPassword(admin);
+        }else{
+        student->finish_worktime();
+        student->status = Student::status::NORMAL;
+        string s = student->name + "在" + student->toNormalTime(student->finish_time) + " 结束上机！";
+        QMessageBox messageBox;
+        QString qstr = QString::fromStdString(s);
+        messageBox.information(0,"结果",qstr.fromStdString(s));
+        messageBox.setFixedSize(500,200);
+        }
     }
 
 }
@@ -79,7 +94,7 @@ void UsePC::on_query_state_clicked()
         messageBox.critical(0,"Error","请输入学号！");
         messageBox.setFixedSize(500,200);
     }else{
-        auto* s = admin->SearchStudent(ui->enter_id->text().toStdString());
+        auto* s = admin->SearchStudent(stoi(ui->enter_id->text().toStdString()));
         if (s==nullptr){
             QMessageBox messageBox;
             messageBox.critical(0,"Error","无法查询到所要的学号");
@@ -88,13 +103,13 @@ void UsePC::on_query_state_clicked()
             QMessageBox messageBox;
             switch(s->status){
             case Student::status::LOGIN: //上机
-                messageBox.information(0,"结果","正在上机中，让管理员点击右边按钮以下机！");
+                messageBox.information(0,"结果","正在上机中，让管理员点击中间按钮以下机！");
                 messageBox.setFixedSize(500,200);
                 ui->change_mode->setText("下机");
                 this->student = s;
                 break;
             case Student::status::NORMAL: //下机
-                messageBox.information(0,"结果","没有上机，请点击右边按钮上机！");
+                messageBox.information(0,"结果","没有上机，请点击中间按钮上机！");
                 messageBox.setFixedSize(500,200);
                 ui->change_mode->setText("上机");
                 this->student = s;

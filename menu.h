@@ -32,6 +32,7 @@ private slots:
 
     void on_ViewData_clicked();
 
+    void refresh_ui();
 private:
     Ui::Menu *ui;
 };

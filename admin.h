@@ -24,7 +24,7 @@ public:
     //辅助函数
     bool VerifyPass(string pass);   //验证密码
     bool verifyStudent(Student* s); //验证创建的学生是否合理
-
+    bool isLogin();                 //是否登陆
     void Save();			//保存
 
     Student* SearchStudent(uint32_t id);            //搜索学生(id)

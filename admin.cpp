@@ -132,3 +132,9 @@ bool Admin::verifyStudent(Student* s){
     return true;
 }
 
+bool Admin::isLogin(){
+    if (status==LOGIN)
+        return true;
+    else
+        return false;
+}

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <qstring.h>
 #include "admin.h"
+#include "enterpassword.h"
 namespace Ui {
 class UsePC;
 }
