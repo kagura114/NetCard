@@ -31,6 +31,7 @@ set(PROJECT_SOURCES
         menu.cpp
         menu.ui
         enterpassword.h enterpassword.cpp enterpassword.ui
+        addstudent.h addstudent.cpp addstudent.ui
     )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

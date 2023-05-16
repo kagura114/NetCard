@@ -7,6 +7,14 @@ CreateProject::CreateProject(QWidget *parent,bool createN) :
 {
     this->createnew = createN;
     ui->setupUi(this);
+
+    //动态渲染头部的文字
+    if (createN)
+        this->ui->CurrentState->setText("请输入要创建的工作目录");
+    else
+        this->ui->CurrentState->setText("请输入已存在的工作目录");
+
+
 }
 
 CreateProject::~CreateProject()
@@ -65,6 +73,9 @@ void CreateProject::on_Enter_clicked()
             }
 
             //打开管理员管理页面
+            this->close();//关闭当前界面
+            auto* c = new Menu(a);
+            c->show();
         } catch (...) {
             QMessageBox messageBox;
             messageBox.critical(0,"Error","读取路径时出现了问题！");
@@ -75,5 +86,14 @@ void CreateProject::on_Enter_clicked()
 
     }
 
+}
+
+
+void CreateProject::on_Restart_clicked()
+{
+    //切换模式
+    this->close();//关闭当前界面
+    auto* c = new CreateProject(nullptr,!this->createnew);
+    c->show();
 }
 

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "admin.h"
+#include "menu.h"
 namespace Ui {
 class CreateAdmin;
 }

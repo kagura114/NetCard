@@ -30,7 +30,9 @@ void CreateAdmin::on_pushButton_clicked()
     }
     else{
         this->admin = new Admin(pswd,path);
-
+        this->close();//关闭当前界面
+        auto* c = new Menu(admin);
+        c->show();
     }
 }
 

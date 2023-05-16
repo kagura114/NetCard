@@ -9,6 +9,7 @@
 #include "createadmin.h"
 #include "admin.h"
 #include "student.h"
+#include "menu.h"
 namespace Ui {
 class CreateProject;
 }
@@ -25,6 +26,8 @@ public:
 
 private slots:
     void on_Enter_clicked();
+
+    void on_Restart_clicked();
 
 private:
     Ui::CreateProject *ui;
