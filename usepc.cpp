@@ -42,6 +42,7 @@ UsePC::~UsePC()
 
 void UsePC::on_change_mode_clicked()
 {
+    //决定功能
     if(ui->change_mode->text()=="功能"){
         QMessageBox messageBox;
         messageBox.critical(0,"Error","请先查询状态！");
@@ -54,7 +55,7 @@ void UsePC::on_change_mode_clicked()
         QMessageBox messageBox;
         messageBox.critical(0,"Error","该状态下不允许操作");
         messageBox.setFixedSize(500,200);
-    }else if(this->student==nullptr){
+    }else if(this->student==nullptr){   //防止空指针
         QMessageBox messageBox;
         messageBox.critical(0,"Error","请重新查询");
         messageBox.setFixedSize(500,200);
@@ -78,8 +79,8 @@ void UsePC::on_change_mode_clicked()
         student->status = Student::status::NORMAL;
         string s = student->name + "在" + student->toNormalTime(student->finish_time) + " 结束上机！";
         s+= "\n共消费" + to_string(student->last_cost) + "元";
-        s+= "\n可用余额为" + to_string(student->remain) + "元。";
-        if(student->remain<=0)
+             s+= "\n可用余额为" + to_string(student->balance) + "元。";
+                                        if(student->balance<=0)
             s+="\n余额不足请联系管理员充值！";
         QMessageBox messageBox;
         QString qstr = QString::fromStdString(s);
@@ -106,12 +107,22 @@ void UsePC::on_query_state_clicked()
         QMessageBox messageBox;
         messageBox.critical(0,"Error","请输入学号！");
         messageBox.setFixedSize(500,200);
+        return;
     }else{
-        auto* s = admin->SearchStudent(stoi(ui->enter_id->text().toStdString()));
+        uint32_t id;
+        try {
+        id = stoi(ui->enter_id->text().toStdString());
+        } catch (...) {
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","请输入仅数字学号！");
+        messageBox.setFixedSize(500,200);
+        }
+        auto* s = admin->SearchStudent(id);
         if (s==nullptr){
             QMessageBox messageBox;
             messageBox.critical(0,"Error","无法查询到所要的学号");
             messageBox.setFixedSize(500,200);
+            return;
         }else{
             QMessageBox messageBox;
             switch(s->status){
@@ -127,23 +138,23 @@ void UsePC::on_query_state_clicked()
                 ui->change_mode->setText("上机");
                 this->student = s;
                 break;
-
             case Student::status::LOST: //挂失
                 messageBox.critical(0,"结果","已挂失，不可上机！");
                 messageBox.setFixedSize(500,200);
                 ui->change_mode->setText("--");
                 break;
-
             case Student::status::FREEZE: //冻结
                 messageBox.critical(0,"结果","已冻结，不可上机！");
                 messageBox.setFixedSize(500,200);
                 ui->change_mode->setText("--");
                 break;
-
             }
-
-
+            return;
         }
+        //重置清空
+        this->student = nullptr;
+        ui->enter_id->clear();
+        ui->change_mode->setText("功能");
     }
 }
 

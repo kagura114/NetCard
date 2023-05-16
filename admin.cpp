@@ -9,8 +9,8 @@ Admin::Admin(string pas,string pa)
     students = new vector<Student*>;
     path	 = pa;
     password = pas;
-    //强制创建默认学生
 
+    //强制创建默认学生
     auto *s = new Student;
     s->name = "学校公用账号";
     s->id = 0;
@@ -18,6 +18,7 @@ Admin::Admin(string pas,string pa)
     s->status = Student::NORMAL;
     s->start_worktime();
     s->finish_worktime();
+    students->push_back(s);
 }
 
 Admin::~Admin()= default;

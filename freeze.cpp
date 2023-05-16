@@ -8,6 +8,7 @@ Freeze::Freeze(Admin *a,QWidget *parent) :
     this->admin = a;
     ui->setupUi(this);
     this->student = nullptr;
+    ui->need_admin_box->setCheckable(false);    //先禁止选中
     ui->change_mode->setStyleSheet("QPushButton{font: 25 14pt '微软雅黑 regular';color: rgb(0,0,0);background-color: rgb(255,248,220);"
                                    "border: 2px groove gray;border-radius:15px;padding:2px 4px;border-style: outset;}"
                                    "QPushButton:hover{background-color: rgb(22,218,208);}"//hover
@@ -48,12 +49,23 @@ void Freeze::on_change_mode_clicked()
         QMessageBox messageBox;
         messageBox.critical(0,"Error","请输入学号！");
         messageBox.setFixedSize(500,200);
+    }else if(this->student==nullptr){
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","请重新查询状态!");
+        messageBox.setFixedSize(500,200);
     }else if(ui->change_mode->text()=="挂失"){
         student->status = Student::LOST;
         QMessageBox messageBox;
         messageBox.warning(0,"Error","已挂失！");
         messageBox.setFixedSize(500,200);
     }else if(ui->change_mode->text()=="解挂"){
+        if(student->status != Student::FREEZE){             //解冻是管理员专有的
+            QMessageBox messageBox;
+            messageBox.information(0,"Error","只可以解冻！");
+            messageBox.setFixedSize(500,200);
+            reset();
+            return;
+        }
         student->status = Student::NORMAL;
         QMessageBox messageBox;
         messageBox.information(0,"Error","已解除挂失！");
@@ -102,8 +114,17 @@ void Freeze::on_query_state_clicked()
         QMessageBox messageBox;
         messageBox.critical(0,"Error","请输入学号！");
         messageBox.setFixedSize(500,200);
+        return;
     }else{
-        auto* s = admin->SearchStudent(stoi(ui->enter_id->text().toStdString()));
+        uint32_t id;
+        try {
+            id = stoi(ui->enter_id->text().toStdString());
+        } catch (...) {
+            QMessageBox messageBox;
+            messageBox.critical(0,"Error","请输入仅数字学号！");
+            messageBox.setFixedSize(500,200);
+        }
+        auto* s = admin->SearchStudent(id);
         if (s==nullptr){
             QMessageBox messageBox;
             messageBox.critical(0,"Error","无法查询到所要的学号");
@@ -131,7 +152,7 @@ void Freeze::on_query_state_clicked()
                 break;
 
             case Student::status::LOST: //挂失
-                messageBox.critical(0,"结果","已挂失,请找管理员解挂！");
+                messageBox.critical(0,"结果","已挂失,如果找回请解挂！");
                 messageBox.setFixedSize(500,200);
                 ui->change_mode->setText("解挂");
                 this->student = s;
@@ -145,7 +166,7 @@ void Freeze::on_query_state_clicked()
                 break;
 
             }
-
+            ui->need_admin_box->setCheckable(true);
 
         }
     }
@@ -160,4 +181,23 @@ void Freeze::reset(){
     this->student = nullptr;
     ui->enter_id->clear();
     ui->change_mode->setText("功能");
+    ui->need_admin_box->setCheckable(false);
+    ui->need_admin_box->setCheckState(Qt::CheckState::Unchecked);
 }
+
+void Freeze::on_need_admin_box_stateChanged(int arg1)
+{
+    //改变按钮上面的字
+    if(ui->change_mode->text()=="功能"){
+
+    }else if(ui->change_mode->text()=="挂失"&&ui->need_admin_box->isChecked()){
+        ui->change_mode->setText("冻结");
+    }else if(ui->change_mode->text()=="解挂"&&ui->need_admin_box->isChecked()){
+        ui->change_mode->setText("解冻");
+    }else if(ui->change_mode->text()=="冻结"&&!ui->need_admin_box->isChecked()){
+        ui->change_mode->setText("挂失");
+    }else if(ui->change_mode->text()=="解冻"&&!ui->need_admin_box->isChecked()){
+        ui->change_mode->setText("解挂");
+    }
+}
+

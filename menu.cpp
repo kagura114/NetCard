@@ -7,8 +7,6 @@ Menu::Menu(Admin* admi,QWidget *parent) :
 {
     this->admin = admi;
     ui->setupUi(this);
-    refresh_ui();
-
     ui->AddStudent->setStyleSheet("QPushButton{font: 25 14pt '微软雅黑 regular';color: rgb(0,0,0);background-color: rgb(255,248,220);"
                                     "border: 2px groove gray;border-radius:15px;padding:2px 4px;border-style: outset;}"
                                     "QPushButton:hover{background-color: rgb(22,218,208);}"//hover
@@ -43,10 +41,15 @@ Menu::~Menu()
 }
 
 void Menu::refresh_ui(){
+
+    auto *newP = new Menu(admin);
     if (admin->isLogin())
-        ui->label->setText("[管理员]功能列表");
+        newP->ui->label->setText("[管理员]功能列表");
     else
-        ui->label->setText("功能列表");
+        newP->ui->label->setText("功能列表");
+    newP->move(60,60);//不要挡住其他页面
+    newP->show();
+    this->close();
 }
 
 void Menu::on_AddStudent_clicked()
