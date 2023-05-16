@@ -18,6 +18,9 @@ public:
 private slots:
     void on_change_mode_clicked();
 
+    void on_query_state_clicked();
+
+    void on_exit_btn_clicked();
 
 private:
     Ui::Freeze *ui;

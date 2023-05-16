@@ -27,6 +27,8 @@ UsePC::UsePC(Admin* a,QWidget *parent) :
                                   "padding-left:20px;"       //内边距-字体缩进
                                   "background-color: rgb(255, 255, 255);" //背景颜色
                                   "border:2px solid rgb(20,196,188);border-radius:15px;");//边框粗细-颜色-圆角设置");
+    this->student = nullptr;
+
 
     //最后显示完成的页面
     this->show();
@@ -39,6 +41,32 @@ UsePC::~UsePC()
 
 void UsePC::on_change_mode_clicked()
 {
+    if(ui->change_mode->text()=="功能"){
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","请先查询状态！");
+        messageBox.setFixedSize(500,200);
+    }else if(ui->enter_id->text().isNull()){
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","请输入学号！");
+        messageBox.setFixedSize(500,200);
+    }else if(ui->change_mode->text()=="--"){
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","该状态下不允许操作");
+        messageBox.setFixedSize(500,200);
+    }else if(this->student==nullptr){
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","请重新查询");
+        messageBox.setFixedSize(500,200);
+        ui->change_mode->setText("功能");
+    }else if(ui->change_mode->text()=="上机"){
+        student->start_worktime();
+        student->status = Student::status::LOGIN;
+        string s = student->name + "在" + student->toNormalTime(student->start_time) + " 开始上机！";
+        QMessageBox messageBox;
+        QString qstr = QString::fromStdString(s);
+        messageBox.information(0,"结果",qstr.fromStdString(s));
+        messageBox.setFixedSize(500,200);
+    }
 
 }
 
@@ -46,7 +74,49 @@ void UsePC::on_change_mode_clicked()
 
 void UsePC::on_query_state_clicked()
 {
+    if(ui->enter_id->text().isNull()){
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","请输入学号！");
+        messageBox.setFixedSize(500,200);
+    }else{
+        auto* s = admin->SearchStudent(ui->enter_id->text().toStdString());
+        if (s==nullptr){
+            QMessageBox messageBox;
+            messageBox.critical(0,"Error","无法查询到所要的学号");
+            messageBox.setFixedSize(500,200);
+        }else{
+            QMessageBox messageBox;
+            switch(s->status){
+            case Student::status::LOGIN: //上机
+                messageBox.information(0,"结果","正在上机中，让管理员点击右边按钮以下机！");
+                messageBox.setFixedSize(500,200);
+                ui->change_mode->setText("下机");
+                this->student = s;
+                break;
+            case Student::status::NORMAL: //下机
+                messageBox.information(0,"结果","没有上机，请点击右边按钮上机！");
+                messageBox.setFixedSize(500,200);
+                ui->change_mode->setText("上机");
+                this->student = s;
+                break;
 
+            case Student::status::LOST: //挂失
+                messageBox.critical(0,"结果","已挂失，不可上机！");
+                messageBox.setFixedSize(500,200);
+                ui->change_mode->setText("--");
+                break;
+
+            case Student::status::FREEZE: //冻结
+                messageBox.critical(0,"结果","已冻结，不可上机！");
+                messageBox.setFixedSize(500,200);
+                ui->change_mode->setText("--");
+                break;
+
+            }
+
+
+        }
+    }
 }
 
 
