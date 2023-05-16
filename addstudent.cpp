@@ -12,3 +12,9 @@ AddStudent::~AddStudent()
 {
     delete ui;
 }
+
+void AddStudent::on_Submit_clicked()
+{
+
+}
+
