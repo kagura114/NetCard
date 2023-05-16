@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>470</width>
-    <height>262</height>
+    <height>303</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>0</y>
+     <x>110</x>
+     <y>20</y>
      <width>271</width>
      <height>81</height>
     </rect>
@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>创建管理员</string>
+    <string>管理员工作系统</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -52,8 +52,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>332</x>
-     <y>198</y>
+     <x>160</x>
+     <y>220</y>
      <width>101</width>
      <height>41</height>
     </rect>
@@ -71,13 +71,48 @@
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>100</y>
+     <y>120</y>
      <width>341</width>
-     <height>81</height>
+     <height>51</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>220</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>清空</string>
    </property>
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Passwd</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>341</x>
+     <y>246</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>364</x>
+     <y>160</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
