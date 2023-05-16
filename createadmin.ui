@@ -114,5 +114,21 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Passwd</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>371</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>374</x>
+     <y>159</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
 </ui>

@@ -127,5 +127,21 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Path</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>130</x>
+     <y>215</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>130</x>
+     <y>164</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
 </ui>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>471</width>
-    <height>543</height>
+    <width>481</width>
+    <height>471</height>
    </rect>
   </property>
   <property name="font">
@@ -254,6 +254,54 @@
     <hint type="destinationlabel">
      <x>89</x>
      <y>150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ClearID</sender>
+   <signal>clicked()</signal>
+   <receiver>ID</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>401</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>136</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ClearSchoolID</sender>
+   <signal>clicked()</signal>
+   <receiver>SchoolID</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>395</x>
+     <y>230</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>302</x>
+     <y>218</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ClearName</sender>
+   <signal>clicked()</signal>
+   <receiver>Name</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>378</x>
+     <y>320</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>315</x>
+     <y>310</y>
     </hint>
    </hints>
   </connection>
