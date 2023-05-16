@@ -18,12 +18,27 @@ AddStudent::~AddStudent()
 void AddStudent::on_Submit_clicked()
 {
     try {
-        //验证密码
-        auto *c = new EnterPassword(admin);
+        //读取数据
         auto *s = new Student();
         s->name = ui->Name->text().toStdString();
         s->id = stoi(ui->ID->text().toStdString());
         s->SchoolID = ui->SchoolID->text().toStdString();
+        //验证密码
+        auto *c = new EnterPassword(admin);
+
+        if(admin->status==Admin::LOGIN)
+        {
+            admin->AddStudent(s);
+            QMessageBox messageBox;
+            messageBox.information(nullptr,"信息","创建成功！");
+            messageBox.setFixedSize(500,200);
+        }
+        else{
+            QMessageBox messageBox;
+            messageBox.critical(0,"Error","未登录！");
+            messageBox.setFixedSize(500,200);
+            this->close();
+        }
 
     }
     catch(std::invalid_argument){

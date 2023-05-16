@@ -12,9 +12,11 @@ class EnterPassword : public QWidget
     Q_OBJECT
 
 public:
-    explicit EnterPassword(Admin* ad,QWidget *parent = nullptr);
+    EnterPassword(Admin* ad,QWidget *parent = nullptr);
     ~EnterPassword();
     bool GetState();
+    bool inOperation;
+
 private slots:
     void on_Submit_clicked();
 

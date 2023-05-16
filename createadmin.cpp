@@ -42,6 +42,11 @@ void CreateAdmin::on_pushButton_clicked()
     }
     else{
         this->admin = new Admin(pswd,path);
+
+        QMessageBox messageBox;
+        messageBox.information(nullptr,"信息","创建成功！");
+        messageBox.setFixedSize(500,200);
+
         this->close();//关闭当前界面
         auto* c = new Menu(admin);
         c->show();

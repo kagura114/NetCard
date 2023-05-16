@@ -56,6 +56,16 @@ void Menu::on_FreezenUnF_clicked()
 void Menu::on_SaveData_clicked()
 {
     //保存数据
+    try {
+        admin->Save();
+        QMessageBox messageBox;
+        messageBox.information(nullptr,"信息","保存成功！");
+        messageBox.setFixedSize(500,200);
+    } catch (...) {
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","保存失败！");
+        messageBox.setFixedSize(500,200);
+    }
 }
 
 
