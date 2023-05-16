@@ -41,7 +41,6 @@ Admin* Admin::AddAdmin(string path){
 void Admin::Save()
 {
     using namespace std::filesystem;
-    Verify(LOGIN);
 
     //检测是否存在文件夹
     if (!filesystem::exists(path)) {

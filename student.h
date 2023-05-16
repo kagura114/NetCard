@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <chrono>
@@ -46,12 +47,16 @@ public:
     void start_worktime(enum place where = CS_buliding);//开始上机的时间
     void finish_worktime();//结束上机的时间
     string workplace();//上机地点
-    string GetData();
+
     void StudentMenu();	//学生菜单
     void whether_working();//是否上机
     void ChangePassword();	//学生修改自己密码
     void ReportLoss();    //学生挂失
     void ChangeName();	//学生修改自己姓名
+
+    //SL
+    string GetData();
+    static Student* ReadData(string f);
 };
 
 
