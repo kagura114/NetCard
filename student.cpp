@@ -148,8 +148,7 @@ string Student::toNormalTime(chrono::system_clock::time_point t){//timepointè½¬å
     using time_point = std::chrono::system_clock::time_point;
     const string format = "%Y-%m-%d %H:%M:%S";
     std::time_t tt = std::chrono::system_clock::to_time_t(t);
-    std::tm tm = *std::gmtime(&tt); //GMT (UTC)
-    //std::tm tm = *std::localtime(&tt); //Locale time-zone, usually UTC by default.
+    std::tm tm = *std::localtime(&tt); //GMT+8
     std::stringstream ss;
     ss << std::put_time(&tm, format.c_str());
     return ss.str();

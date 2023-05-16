@@ -6,6 +6,8 @@
 #include "student.h"
 #include "addstudent.h"
 #include "viewstudentinfo.h"
+#include "freeze.h"
+#include "usepc.h"
 namespace Ui {
 class Menu;
 }

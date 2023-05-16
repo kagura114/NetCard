@@ -49,7 +49,7 @@ void Menu::on_AddStudent_clicked()
 
 void Menu::on_FreezenUnF_clicked()
 {
-    //打开冻结解冻界面
+    auto *f = new Freeze(admin);
 }
 
 
@@ -72,7 +72,7 @@ void Menu::on_SaveData_clicked()
 
 void Menu::on_UsenUnuse_clicked()
 {
-
+    auto *v = new UsePC(admin);
 
 }
 
