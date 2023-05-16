@@ -8,13 +8,7 @@ AddStudent::AddStudent(Admin* a,QWidget *parent) :
     ui->setupUi(this);
     this->admin = a;
     this->show();
-    //叠在上个窗口上面
-    if(admin->status!=Admin::LOGIN){
-        QMessageBox messageBox;
-        messageBox.critical(0,"Error","请先登录");
-        messageBox.setFixedSize(500,200);
-        auto *c = new EnterPassword(admin);
-    }
+
     ui->ClearID->setStyleSheet("QPushButton{font: 25 14pt '微软雅黑 regular';color: rgb(0,0,0);background-color: rgb(255,248,220);"
                                   "border: 2px groove gray;border-radius:15px;padding:2px 4px;border-style: outset;}"
                                   "QPushButton:hover{background-color: rgb(22,218,208);}"//hover
@@ -50,7 +44,16 @@ AddStudent::AddStudent(Admin* a,QWidget *parent) :
                                "QPushButton:hover{background-color: rgb(22,218,208);}"//hover
                                "QPushButton:pressed{background-color: rgb(17,171,164);}"//pressed
                                "border:2px solid rgb(20,196,188);");//边框粗细-颜色-圆角设置
-   this->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255,228,225, 255), stop:1 rgba(255,228,225, 255));");
+
+    this->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(240,255,255, 255), stop:1 rgba(240,255,255, 255));");
+
+    //叠在上个窗口上面
+    if(admin->status!=Admin::LOGIN){
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","请先登录");
+        messageBox.setFixedSize(500,200);
+        auto *c = new EnterPassword(admin);
+    }
 }
 
 AddStudent::~AddStudent()
@@ -63,15 +66,27 @@ void AddStudent::on_Submit_clicked()
     try {
         //读取数据
         auto *s = new Student();
-        s->name = ui->Name->text().toStdString();
-        s->id = stoi(ui->ID->text().toStdString());
-        s->SchoolID = ui->SchoolID->text().toStdString();
+        string name = ui->Name->text().toStdString();
+        uint32_t id = stoi(ui->ID->text().toStdString());
+        string SchoolID = ui->SchoolID->text().toStdString();
 
-        //检查数据
+        //检查非空
+        if(name.empty())
+            name="No Name";
+        if(SchoolID.empty())
+            SchoolID="0";
+
+        //赋值
+        s->name = name;
+        s->id   = id;
+        s->SchoolID = SchoolID;
+
+        //检查ID数据
         if(!admin->verifyStudent(s)){
             QMessageBox messageBox;
             messageBox.critical(0,"Error","ID已存在，不允许重复添加");
             messageBox.setFixedSize(500,200);
+            delete s;
             this->close();
         }
         //验证登陆状态
@@ -86,6 +101,8 @@ void AddStudent::on_Submit_clicked()
             QMessageBox messageBox;
             messageBox.critical(0,"Error","未登录！");
             messageBox.setFixedSize(500,200);
+            delete s;
+
             this->close();
         }
 
@@ -94,6 +111,7 @@ void AddStudent::on_Submit_clicked()
         QMessageBox messageBox;
         messageBox.critical(0,"Error","添加学生失败！");
         messageBox.setFixedSize(500,200);
+
     }
 
     this->close();//关闭当前界面

@@ -12,10 +12,9 @@ string Student::GetData(){
     string result = "";
     result += to_string(id) + "\n";         //卡号
     result += name + "\n";                  //姓名
-    result += password + "\n";              //密码
     result += to_string(recharge) + "\n";	//充值金额
     result += to_string(cost) + "\n";		//花费
-    result += to_string(remain) + "\n";		//余额
+    result += to_string(balance) + "\n";	//余额
     result += to_string(status) + "\n";		//卡账户状态
     result += to_string(place) + "\n";		//上机地点
     result += to_string(start_time.time_since_epoch().count()) + "\n";	//开始上机的时间
@@ -31,10 +30,9 @@ Student::Student(string filename){
         inFile >> student->id;
         inFile.ignore();
         getline(inFile, student->name);
-        getline(inFile, student->password);
         inFile >> student->recharge;
         inFile >> student->cost;
-        inFile >> student->remain;
+        inFile >> student->balance;
         string status,place;
         inFile >> status;
         if (status == to_string(Student::status::FREEZE)){
@@ -104,7 +102,7 @@ void Student::finish_worktime()
     auto duration = chrono::duration_cast<std::chrono::seconds>(finish_time - start_time);
     cost += duration.count() * 0.1;
     last_cost = duration.count() * 0.1;
-    remain = recharge - cost;
+    balance = recharge - cost;
 }
 string Student::GetStatus()
 {//卡账户状态
@@ -136,9 +134,10 @@ string Student::GetInfo()
     string result = "";
     result += "学生卡号：" + to_string(id) + "\n";	//卡号
     result += "学生姓名：" + name + "\n";			//姓名
+    result += "学生学号：" + SchoolID + "\n";			//学号
     result += "学生充值金额：" + to_string(recharge) + "\n";	//充值金额
     result += "学生花费：" + to_string(cost) + "\n";		//花费
-    result += "学生余额：" + to_string(remain) + "\n";		//余额
+    result += "学生余额：" + to_string(balance) + "\n";		//余额
     result += "学生卡账户状态："  + GetStatus() + "\n";		//卡账户状态
     result += "学生" + workplace() + "\n";		//上机地点
     result += "学生开始上机的时间：" + toNormalTime(start_time) + "\n";		//开始上机的时间

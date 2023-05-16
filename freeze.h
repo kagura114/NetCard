@@ -25,6 +25,8 @@ private slots:
 
     void reset();
 
+    void on_need_admin_box_stateChanged(int arg1);
+
 private:
     Ui::Freeze *ui;
     Admin* admin;

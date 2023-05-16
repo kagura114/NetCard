@@ -2,6 +2,7 @@
 #define MENU_H
 
 #include <QWidget>
+#include <QScreen>
 #include "admin.h"
 #include "student.h"
 #include "addstudent.h"

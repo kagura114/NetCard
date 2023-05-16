@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>管理员权限</string>
+    <string>功能列表</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
