@@ -11,6 +11,13 @@ Admin::Admin(string pas,string pa)
     password = pas;
     //强制创建默认学生
 
+    auto *s = new Student;
+    s->name = "学校公用账号";
+    s->id = 0;
+    s->SchoolID = "0";
+    s->status = Student::NORMAL;
+    s->start_worktime();
+    s->finish_worktime();
 }
 
 Admin::~Admin()= default;

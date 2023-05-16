@@ -2,7 +2,10 @@
 
 Student::Student()
 {
-
+    start_worktime();
+    finish_worktime();
+    this->place = classroom;
+    this->status = NORMAL;
 }
 
 string Student::GetData(){
@@ -86,4 +89,18 @@ string Student::workplace()
     }
     return result;
 
+}
+void Student::start_worktime(enum place where)
+{
+    auto now = std::chrono::system_clock::now();
+    place = where;
+    start_time = now;
+}
+void Student::finish_worktime()
+{
+    auto now = chrono::system_clock::now();
+    finish_time = now;
+    //计算上机时间
+    auto duration = chrono::duration_cast<std::chrono::seconds>(finish_time - start_time);
+    cost -= duration.count() * 0.1;
 }
