@@ -2,7 +2,7 @@
 #define VIEWSTUDENTINFO_H
 
 #include <QWidget>
-
+#include "admin.h"
 namespace Ui {
 class ViewStudentInfo;
 }
@@ -12,7 +12,7 @@ class ViewStudentInfo : public QWidget
     Q_OBJECT
 
 public:
-    explicit ViewStudentInfo(QWidget *parent = nullptr);
+    explicit ViewStudentInfo(Admin*,QWidget *parent = nullptr);
     ~ViewStudentInfo();
 
 private slots:
@@ -24,6 +24,7 @@ private slots:
 
 private:
     Ui::ViewStudentInfo *ui;
+    Admin* admin;
 };
 
 #endif // VIEWSTUDENTINFO_H

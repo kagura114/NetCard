@@ -10,6 +10,8 @@
 #include <vector>
 #include <string>
 #include <chrono>
+#include <iomanip>
+
 using namespace std;
 class Student
 {
@@ -49,14 +51,11 @@ public:
     void finish_worktime();                             //结束上机的时间
     string workplace();                                 //上机地点
 
-    void StudentMenu();     //学生菜单
-    void whether_working();//是否上机
-    void ChangePassword();	//学生修改自己密码
-    void ReportLoss();    //学生挂失
-    void ChangeName();	//学生修改自己姓名
-
+    string toNormalTime(chrono::system_clock::time_point t);
     //SL
     string GetData();
+    string GetInfo();
+    string GetStatus();
 };
 
 

@@ -76,6 +76,12 @@
      <pointsize>21</pointsize>
     </font>
    </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background transprant</string>
+   </property>
    <property name="text">
     <string>欢迎使用模拟校园卡系统</string>
    </property>

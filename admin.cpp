@@ -84,12 +84,28 @@ Student* Admin::SearchStudent(uint32_t id)
         if (i->id == id)
             return i;
     }
-    QMessageBox messageBox;
-    messageBox.critical(0,"Error","没有找到持有这个卡号的学生！");
-    messageBox.setFixedSize(500,200);
+
+    return nullptr;
+}
+Student* Admin::SearchStudent(string n)
+{
+    for (auto& i : *students)
+    {
+        if (i->name == n)
+            return i;
+    }
     return nullptr;
 }
 
+Student* Admin::SearchStudent(string schoolid, bool i)
+{
+    for (auto& i : *students)
+    {
+        if (i->SchoolID == schoolid)
+            return i;
+    }
+    return nullptr;
+}
 bool Admin::VerifyPass(string pass){
 
     if(attempts==5){
@@ -108,5 +124,11 @@ bool Admin::VerifyPass(string pass){
         return false;}
 
 }
-
+bool Admin::verifyStudent(Student* s){
+    for(auto i : *students){
+        if(i->id==s->id)
+            return false;
+    }
+    return true;
+}
 

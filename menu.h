@@ -5,7 +5,7 @@
 #include "admin.h"
 #include "student.h"
 #include "addstudent.h"
-
+#include "viewstudentinfo.h"
 namespace Ui {
 class Menu;
 }
