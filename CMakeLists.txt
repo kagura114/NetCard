@@ -33,6 +33,8 @@ set(PROJECT_SOURCES
         enterpassword.h enterpassword.cpp enterpassword.ui
         addstudent.h addstudent.cpp addstudent.ui
         viewstudentinfo.h viewstudentinfo.cpp viewstudentinfo.ui
+        usepc.h usepc.cpp usepc.ui
+        freeze.h freeze.cpp freeze.ui
     )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

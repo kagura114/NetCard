@@ -66,11 +66,13 @@ void Menu::on_SaveData_clicked()
         messageBox.critical(0,"Error","保存失败！");
         messageBox.setFixedSize(500,200);
     }
+    admin->status = Admin::LOGOUT;//最后登出
 }
 
 
 void Menu::on_UsenUnuse_clicked()
 {
+
 
 }
 

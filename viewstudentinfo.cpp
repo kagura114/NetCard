@@ -70,7 +70,7 @@ void ViewStudentInfo::on_QSchoolID_clicked()
         messageBox.setFixedSize(500,200);
         }else{
             QMessageBox messageBox;
-            messageBox.critical(0,"Error","没有找到持有这个卡号的学生！");
+            messageBox.critical(0,"Error","没有找到这个学号的学生！");
             messageBox.setFixedSize(500,200);
         }
     } catch (...) {
@@ -94,7 +94,7 @@ void ViewStudentInfo::on_Qname_clicked()
         messageBox.setFixedSize(500,200);
         }else{
             QMessageBox messageBox;
-            messageBox.critical(0,"Error","没有找到持有这个卡号的学生！");
+            messageBox.critical(0,"Error","没有找到这个名字的学生！");
             messageBox.setFixedSize(500,200);
         }
     } catch (...) {
