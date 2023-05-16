@@ -104,3 +104,53 @@ void Student::finish_worktime()
     auto duration = chrono::duration_cast<std::chrono::seconds>(finish_time - start_time);
     cost -= duration.count() * 0.1;
 }
+string Student::GetStatus()
+{//卡账户状态
+    string result = "";
+    switch (status)
+    {
+    case Student::NORMAL:
+        result += "正常";
+        break;
+    case
+        Student::LOST:result += "挂失";
+        break;
+    case
+        Student::FREEZE:result += "冻结";
+        break;
+    case
+        Student::LOGIN:result += "上机";
+        break;
+    default:
+        result += "未知";
+        break;
+   }
+    return result;
+
+}
+
+string Student::GetInfo()
+{
+    string result = "";
+    result += "学生卡号：" + to_string(id) + "\n";	//卡号
+    result += "学生姓名：" + name + "\n";			//姓名
+    result += "学生充值金额：" + to_string(recharge) + "\n";	//充值金额
+    result += "学生花费：" + to_string(cost) + "\n";		//花费
+    result += "学生余额：" + to_string(remain) + "\n";		//余额
+    result += "学生卡账户状态："  + GetStatus() + "\n";		//卡账户状态
+    result += "学生" + workplace() + "\n";		//上机地点
+    result += "学生开始上机的时间：" + toNormalTime(start_time) + "\n";		//开始上机的时间
+    result += "学生结束上机的时间：" + toNormalTime(finish_time) + "\n";	//结束上机的时间
+    return result;
+}
+
+string Student::toNormalTime(chrono::system_clock::time_point t){//timepoint转化为人类可读的形式
+    using time_point = std::chrono::system_clock::time_point;
+    const string format = "%Y-%m-%d %H:%M:%S";
+    std::time_t tt = std::chrono::system_clock::to_time_t(t);
+    std::tm tm = *std::gmtime(&tt); //GMT (UTC)
+    //std::tm tm = *std::localtime(&tt); //Locale time-zone, usually UTC by default.
+    std::stringstream ss;
+    ss << std::put_time(&tm, format.c_str());
+    return ss.str();
+}

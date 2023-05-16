@@ -66,8 +66,15 @@ void AddStudent::on_Submit_clicked()
         s->id = stoi(ui->ID->text().toStdString());
         s->SchoolID = ui->SchoolID->text().toStdString();
 
+        //检查数据
+        if(!admin->verifyStudent(s)){
+            QMessageBox messageBox;
+            messageBox.critical(0,"Error","ID已存在，不允许重复添加");
+            messageBox.setFixedSize(500,200);
+            this->close();
+        }
         //验证登陆状态
-        if(admin->status==Admin::LOGIN)
+        else if(admin->status==Admin::LOGIN)
         {
             admin->AddStudent(s);
             QMessageBox messageBox;
@@ -81,30 +88,6 @@ void AddStudent::on_Submit_clicked()
             this->close();
         }
 
-    }
-    catch(std::invalid_argument){
-        QMessageBox messageBox;
-        messageBox.critical(0,"Error","ID格式错误！只允许数字！");
-        messageBox.setFixedSize(500,200);
-        ui->ID->clear();
-    }
-    catch(std::out_of_range){
-        QMessageBox messageBox;
-        messageBox.critical(0,"Error","ID格式错误！位数过多！");
-        messageBox.setFixedSize(500,200);
-        ui->ID->clear();
-    }
-    catch(overflow_error){
-        QMessageBox messageBox;
-        messageBox.critical(0,"Error","ID格式错误！过长！");
-        messageBox.setFixedSize(500,200);
-        ui->ID->clear();
-    }
-    catch(underflow_error){
-        QMessageBox messageBox;
-        messageBox.critical(0,"Error","ID格式错误！");
-        messageBox.setFixedSize(500,200);
-        ui->ID->clear();
     }
     catch (...) {
         QMessageBox messageBox;

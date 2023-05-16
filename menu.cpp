@@ -77,6 +77,6 @@ void Menu::on_UsenUnuse_clicked()
 
 void Menu::on_ViewData_clicked()
 {
-
+    auto *v = new ViewStudentInfo(admin);
 }
 
