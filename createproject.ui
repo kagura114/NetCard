@@ -28,15 +28,15 @@
   <widget class="QLabel" name="CurrentState">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>10</y>
-     <width>401</width>
+     <x>100</x>
+     <y>20</y>
+     <width>331</width>
      <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>26</pointsize>
+     <pointsize>22</pointsize>
     </font>
    </property>
    <property name="text">
@@ -53,49 +53,60 @@
     </rect>
    </property>
   </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget">
+  <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>180</y>
-     <width>431</width>
-     <height>101</height>
+     <x>90</x>
+     <y>200</y>
+     <width>61</width>
+     <height>41</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item alignment="Qt::AlignHCenter">
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="font">
-       <font>
-        <pointsize>21</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>清空</string>
-      </property>
-     </widget>
-    </item>
-    <item alignment="Qt::AlignHCenter">
-     <widget class="QPushButton" name="Enter">
-      <property name="font">
-       <font>
-        <pointsize>21</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>确认</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="Restart">
-      <property name="text">
-       <string>切换模式</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>清空</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Enter">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>200</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>确认</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Restart">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>200</y>
+     <width>70</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>切换</string>
+   </property>
   </widget>
  </widget>
  <resources/>
