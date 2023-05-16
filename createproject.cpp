@@ -49,6 +49,21 @@ void CreateProject::on_Enter_clicked()
         bool readSuccess = true;
         try {
             Admin *a = Admin::AddAdmin(file);
+            //读取所有学生
+            std::vector<std::string> file_paths;
+            // 获取文件目录列表
+            for (const auto& entry : std::filesystem::recursive_directory_iterator(file+"/Students/")) {
+                //不包含非文件
+                if (entry.is_regular_file()) {
+                    file_paths.push_back(entry.path().string());
+                }
+            }
+            //加载学生
+            for (const string &path : file_paths) {
+                Student* stu = new Student(path);
+                a->AddStudent(stu);
+            }
+
             //打开管理员管理页面
         } catch (...) {
             QMessageBox messageBox;

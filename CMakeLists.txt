@@ -27,6 +27,10 @@ set(PROJECT_SOURCES
         createadmin.h
         createadmin.cpp
         createadmin.ui
+        menu.h
+        menu.cpp
+        menu.ui
+        enterpassword.h enterpassword.cpp enterpassword.ui
     )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

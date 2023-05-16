@@ -20,8 +20,9 @@ string Student::GetData(){
     return result;
 }
 
-static Student* ReadData(string filename){
-    auto* student = new Student;
+
+Student::Student(string filename){
+    auto* student = this;
     ifstream inFile(filename);
     if (inFile.is_open()) {
         inFile >> student->id;
@@ -60,5 +61,29 @@ static Student* ReadData(string filename){
         student->finish_time = chrono::system_clock::time_point(chrono::system_clock::duration(finish_time));
         inFile.close();
     }
-    return student;
+}
+
+string Student::workplace()
+{
+    string result = "";
+    switch (place)
+    {
+    case Student::classroom:
+        result += "上机地点：南京邮电大学教室";
+        break;
+    case Student::CS_buliding:
+        result += "上机地点：南京邮电大学计算机学科楼";
+        break;
+    case Student::library:
+        result += "上机地点：南京邮电大学图书馆";
+        break;
+    case Student::dormitory:
+        result += "上机地点：南京邮电大学桂苑";
+        break;
+    default:
+        result += "上机地点：南京邮电大学校外";
+        break;
+    }
+    return result;
+
 }

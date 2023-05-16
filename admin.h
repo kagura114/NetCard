@@ -37,7 +37,7 @@ public:
     Student* SearchStudent(uint32_t id);	//搜索学生(精确)
 
     void StudentMenu(Student *s);	//学生信息菜单
-    void AddStudent();				//添加学生
+    void AddStudent(Student *);     //添加学生
     void DeleteStudent();			//删除学生
     void ListStudent();				//列出学生
     void SearchStudentR();			//搜索学生(模糊)

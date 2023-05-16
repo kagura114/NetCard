@@ -13,10 +13,7 @@ Admin::Admin(string pas,string pa)
 
 }
 
-Admin::~Admin()
-{
-
-}
+Admin::~Admin()= default;
 
 Admin* Admin::AddAdmin(string path){
     using namespace std::filesystem;
@@ -63,4 +60,20 @@ void Admin::Save()
         saver << i->GetData() << endl;
         saver.close();
     }
+}
+void Admin::AddStudent(Student *s){
+    this->students->push_back(s);
+}
+
+Student* Admin::SearchStudent(uint32_t id)
+{
+    for (auto& i : *students)
+    {
+        if (i->id == id)
+            return i;
+    }
+    QMessageBox messageBox;
+    messageBox.critical(0,"Error","没有找到持有这个卡号的学生！");
+    messageBox.setFixedSize(500,200);
+    return nullptr;
 }

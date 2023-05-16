@@ -7,6 +7,8 @@
 #include <QMessageBox>
 
 #include "createadmin.h"
+#include "admin.h"
+#include "student.h"
 namespace Ui {
 class CreateProject;
 }
