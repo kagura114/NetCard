@@ -2,6 +2,7 @@
 #define USEPC_H
 
 #include <QWidget>
+#include <qstring.h>
 #include "admin.h"
 namespace Ui {
 class UsePC;
@@ -12,7 +13,7 @@ class UsePC : public QWidget
     Q_OBJECT
 
 public:
-    explicit UsePC(Admin* a,QWidget *parent = nullptr);
+    UsePC(Admin* a,QWidget *parent = nullptr);
     ~UsePC();
 
 private slots:
@@ -25,6 +26,7 @@ private slots:
 private:
     Ui::UsePC *ui;
     Admin* admin;
+    Student *student;
 };
 
 #endif // USEPC_H
