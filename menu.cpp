@@ -16,19 +16,20 @@ Menu::~Menu()
 
 void Menu::on_AddStudent_clicked()
 {
-
+    //打开添加学生页面
+    auto* c = new AddStudent(this->admin);
 }
 
 
 void Menu::on_FreezenUnF_clicked()
 {
-
+    //打开冻结解冻界面
 }
 
 
 void Menu::on_SaveData_clicked()
 {
-
+    //保存数据
 }
 
 

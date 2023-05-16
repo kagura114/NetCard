@@ -2,7 +2,8 @@
 #define ADDSTUDENT_H
 
 #include <QWidget>
-
+#include "admin.h"
+#include "enterpassword.h"
 namespace Ui {
 class AddStudent;
 }
@@ -12,7 +13,7 @@ class AddStudent : public QWidget
     Q_OBJECT
 
 public:
-    explicit AddStudent(QWidget *parent = nullptr);
+    AddStudent(Admin* a,QWidget *parent = nullptr);
     ~AddStudent();
 
 private slots:
@@ -20,6 +21,7 @@ private slots:
 
 private:
     Ui::AddStudent *ui;
+    Admin* admin;
 };
 
 #endif // ADDSTUDENT_H

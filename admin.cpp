@@ -77,3 +77,10 @@ Student* Admin::SearchStudent(uint32_t id)
     messageBox.setFixedSize(500,200);
     return nullptr;
 }
+bool Admin::VerifyPass(string pass){
+    if (pass==this->password){
+        this->status = LOGIN;
+        return true;
+    }
+    else return false;
+}
