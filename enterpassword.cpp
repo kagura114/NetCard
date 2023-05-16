@@ -1,10 +1,12 @@
 #include "enterpassword.h"
 #include "ui_enterpassword.h"
 
-EnterPassword::EnterPassword(QWidget *parent) :
+EnterPassword::EnterPassword(Admin* ad,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::EnterPassword)
 {
+    this->admin = ad;
+    this->State = false;
     ui->setupUi(this);
     ui->pushButton->setStyleSheet("QPushButton{font: 25 14pt '微软雅黑 regular';color: rgb(0,0,0);background-color: rgb(255,248,220);"
                                     "border: 2px groove gray;border-radius:15px;padding:2px 4px;border-style: outset;}"
@@ -23,4 +25,29 @@ EnterPassword::EnterPassword(QWidget *parent) :
 EnterPassword::~EnterPassword()
 {
     delete ui;
+}
+
+void EnterPassword::on_Submit_clicked()
+{
+    //管理员已登录可以直接完成
+    if(admin->status == Admin::LOGIN){
+        this->State = true;
+    }
+    //获取输入的内容
+    QString Pa = ui->enter_pass->text();
+    std::string pass = Pa.toStdString();
+    //检查密码
+    this->State = admin->VerifyPass(pass);
+
+    if (State){
+        this->close();
+    }
+    else{
+        throw "Wrong Password";
+        this->close();
+    }
+}
+
+bool EnterPassword::GetState(){
+    return State;
 }

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "admin.h"
 #include "student.h"
+#include "addstudent.h"
 
 namespace Ui {
 class Menu;

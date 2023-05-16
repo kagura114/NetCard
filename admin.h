@@ -27,7 +27,7 @@ public:
     void AdminMenu();	//管理员菜单
     //辅助函数
 
-    void Verify(int level = LOGIN);		//验证是否登录
+    bool VerifyPass(string pass);   //验证密码
 
     //管理员菜单
     void Save();			//保存
@@ -48,10 +48,12 @@ public:
 
     //从文件读取
     static Admin* AddAdmin(string path);
+
+    enum Status { LOGOUT = 0x001, LOGIN = 0x010 , LOCK = 0x100 } status;	//登录状态
+
 private:
     string	password;	//密码
     char	attempts;	//尝试登录次数
-    enum Status { LOGOUT = 0x001, LOGIN = 0x010 , LOCK = 0x100 } status;	//登录状态
     vector<Student*>* students;	//学生列表
     string  path;		//保存文件路径
 };
