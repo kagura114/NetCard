@@ -18,6 +18,7 @@ public:
 private slots:
     void on_change_mode_clicked();
 
+
 private:
     Ui::Freeze *ui;
     Admin* admin;
