@@ -28,8 +28,8 @@
   <widget class="QPushButton" name="NewFile">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>210</y>
+     <x>120</x>
+     <y>240</y>
      <width>261</width>
      <height>61</height>
     </rect>
@@ -47,8 +47,8 @@
   <widget class="QPushButton" name="ReadFile">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>340</y>
+     <x>120</x>
+     <y>350</y>
      <width>261</width>
      <height>61</height>
     </rect>
@@ -62,56 +62,23 @@
     <string>从已有的文件读取</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Welcome_Label">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>70</y>
-     <width>331</width>
-     <height>81</height>
+     <x>100</x>
+     <y>90</y>
+     <width>311</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>18</pointsize>
+     <pointsize>21</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>欢迎使用校园卡上机管理系统</string>
+    <string>欢迎使用模拟校园卡系统</string>
    </property>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>470</y>
-     <width>141</width>
-     <height>76</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>designer:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>B22040721 黄译</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>B22040723舒乔嘉祺</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
   </widget>
  </widget>
  <resources/>
