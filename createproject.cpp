@@ -27,7 +27,7 @@ CreateProject::CreateProject(QWidget *parent,bool createN) :
                                   "padding-left:20px;"       //内边距-字体缩进
                                   "background-color: rgb(255, 255, 255);" //背景颜色
                                   "border:2px solid rgb(20,196,188);border-radius:15px;");//边框粗细-颜色-圆角设置");
-    this->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(240,255,255, 255), stop:1 rgba(240,255,255, 255));");
+    this->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255,250,205, 255), stop:1 rgba(255,250,205, 255));");
     //动态渲染头部的文字
     if (createN)
         this->ui->CurrentState->setText("请输入要创建的工作目录");
