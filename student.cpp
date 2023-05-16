@@ -102,7 +102,9 @@ void Student::finish_worktime()
     finish_time = now;
     //计算上机时间
     auto duration = chrono::duration_cast<std::chrono::seconds>(finish_time - start_time);
-    cost -= duration.count() * 0.1;
+    cost += duration.count() * 0.1;
+    last_cost = duration.count() * 0.1;
+    remain = recharge - cost;
 }
 string Student::GetStatus()
 {//卡账户状态
