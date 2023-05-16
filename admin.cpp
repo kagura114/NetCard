@@ -61,10 +61,15 @@ void Admin::Save()
     out << endl; //将密码转化为数字提高辨识难度
     out.close();
     //保存学生信息
+    //检查目录存在
+    if (!std::filesystem::exists(path + "/Students/"))
+        filesystem::create_directories(path + "/Students/");
     for (auto& i : *students)
     {
-        ofstream saver = ofstream(path + "/Students/" + to_string(i->id) + ".txt");
-        saver << i->GetData() << endl;
+        string new_path = path + "/Students/" + to_string(i->id) + ".txt";
+        ofstream saver = ofstream(new_path);
+        string data = i->GetData();
+        saver << data;
         saver.close();
     }
 }

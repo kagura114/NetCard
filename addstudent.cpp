@@ -8,6 +8,13 @@ AddStudent::AddStudent(Admin* a,QWidget *parent) :
     ui->setupUi(this);
     this->admin = a;
     this->show();
+    //叠在上个窗口上面
+    if(admin->status!=Admin::LOGIN){
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","请先登录");
+        messageBox.setFixedSize(500,200);
+        auto *c = new EnterPassword(admin);
+    }
     ui->ClearID->setStyleSheet("QPushButton{font: 25 14pt '微软雅黑 regular';color: rgb(0,0,0);background-color: rgb(255,248,220);"
                                   "border: 2px groove gray;border-radius:15px;padding:2px 4px;border-style: outset;}"
                                   "QPushButton:hover{background-color: rgb(22,218,208);}"//hover
@@ -58,9 +65,8 @@ void AddStudent::on_Submit_clicked()
         s->name = ui->Name->text().toStdString();
         s->id = stoi(ui->ID->text().toStdString());
         s->SchoolID = ui->SchoolID->text().toStdString();
-        //验证密码
-        auto *c = new EnterPassword(admin);
 
+        //验证登陆状态
         if(admin->status==Admin::LOGIN)
         {
             admin->AddStudent(s);
