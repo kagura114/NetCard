@@ -128,7 +128,7 @@ string Student::GetStatus()
         break;
    }
     return result;
-
+}
 string Student::GetInfo()
 {
     string result = "";
@@ -144,8 +144,8 @@ string Student::GetInfo()
         result += "账户创建的时间：" + toNormalTime(start_time) + "\n";	//账户创建的时间
     }else{
     result += "学生开始上机的时间：" + toNormalTime(start_time) + "\n";		//开始上机的时间
-    result += "学生结束上机的时间：" + toNormalTime(finish_time) + "\n";	//结束上机的时间}
-    return result;}
+    result += "学生结束上机的时间：" + toNormalTime(finish_time) + "\n";}	//结束上机的时间
+    return result;
 }
 
 string Student::toNormalTime(chrono::system_clock::time_point t){//timepoint转化为人类可读的形式
