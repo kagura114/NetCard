@@ -86,14 +86,15 @@ string Student::workplace()
         break;
     }
     return result;
-
 }
+
 void Student::start_worktime(enum place where)
 {
     auto now = std::chrono::system_clock::now();
     place = where;
     start_time = now;
 }
+
 void Student::finish_worktime()
 {
     auto now = chrono::system_clock::now();
@@ -104,6 +105,7 @@ void Student::finish_worktime()
     last_cost = duration.count() * 0.1;
     balance = recharge - cost;
 }
+
 string Student::GetStatus()
 {//卡账户状态
     string result = "";
@@ -127,8 +129,6 @@ string Student::GetStatus()
    }
     return result;
 
-}
-
 string Student::GetInfo()
 {
     string result = "";
@@ -140,9 +140,12 @@ string Student::GetInfo()
     result += "学生余额：" + to_string(balance) + "\n";		//余额
     result += "学生卡账户状态："  + GetStatus() + "\n";		//卡账户状态
     result += "学生" + workplace() + "\n";		//上机地点
+    if (start_time==finish_time){
+        result += "账户创建的时间：" + toNormalTime(start_time) + "\n";	//账户创建的时间
+    }else{
     result += "学生开始上机的时间：" + toNormalTime(start_time) + "\n";		//开始上机的时间
-    result += "学生结束上机的时间：" + toNormalTime(finish_time) + "\n";	//结束上机的时间
-    return result;
+    result += "学生结束上机的时间：" + toNormalTime(finish_time) + "\n";	//结束上机的时间}
+    return result;}
 }
 
 string Student::toNormalTime(chrono::system_clock::time_point t){//timepoint转化为人类可读的形式

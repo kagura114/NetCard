@@ -9,18 +9,36 @@ Freeze::Freeze(Admin *a,QWidget *parent) :
     ui->setupUi(this);
     this->student = nullptr;
     ui->need_admin_box->setCheckable(false);    //先禁止选中
-    ui->change_mode->setStyleSheet("QPushButton{font: 25 14pt '微软雅黑 regular';color: rgb(0,0,0);background-color: rgb(255,248,220);"
-                                   "border: 2px groove gray;border-radius:15px;padding:2px 4px;border-style: outset;}"
+    ui->change_mode->setStyleSheet("QPushButton{"
+                                   "font: 25 14pt '微软雅黑 regular';"
+                                   "color: rgb(0,0,0);"
+                                   "background-color: rgb(255,248,220);"
+                                   "border: 2px groove gray;"
+                                   "border-radius:15px;"
+                                   "padding:2px 4px;"
+                                   "border-style: outset;}"
                                    "QPushButton:hover{background-color: rgb(22,218,208);}"//hover
                                    "QPushButton:pressed{background-color: rgb(17,171,164);}"//pressed
                                    "border:2px solid rgb(20,196,188);");//边框粗细-颜色-圆角设置
-    ui->query_state->setStyleSheet("QPushButton{font: 25 14pt '微软雅黑 regular';color: rgb(0,0,0);background-color: rgb(255,248,220);"
-                                   "border: 2px groove gray;border-radius:15px;padding:2px 4px;border-style: outset;}"
+    ui->query_state->setStyleSheet("QPushButton{"
+                                   "font: 25 14pt '微软雅黑 regular';"
+                                   "color: rgb(0,0,0);"
+                                   "background-color: rgb(255,248,220);"
+                                   "border: 2px groove gray;"
+                                   "border-radius:15px;"
+                                   "padding:2px 4px;"
+                                   "border-style: outset;}"
                                    "QPushButton:hover{background-color: rgb(22,218,208);}"//hover
                                    "QPushButton:pressed{background-color: rgb(17,171,164);}"//pressed
                                    "border:2px solid rgb(20,196,188);");//边框粗细-颜色-圆角设置
-    ui->exit_btn->setStyleSheet("QPushButton{font: 25 14pt '微软雅黑 regular';color: rgb(0,0,0);background-color: rgb(255,248,220);"
-                                "border: 2px groove gray;border-radius:15px;padding:2px 4px;border-style: outset;}"
+    ui->exit_btn->setStyleSheet("QPushButton{"
+                                "font: 25 14pt '微软雅黑 regular';"
+                                "color: rgb(0,0,0);"
+                                "background-color: rgb(255,248,220);"
+                                "border: 2px groove gray;"
+                                "border-radius:15px;"
+                                "padding:2px 4px;"
+                                "border-style: outset;}"
                                 "QPushButton:hover{background-color: rgb(22,218,208);}"//hover
                                 "QPushButton:pressed{background-color: rgb(17,171,164);}"//pressed
                                 "border:2px solid rgb(20,196,188);");//边框粗细-颜色-圆角设置
@@ -29,7 +47,8 @@ Freeze::Freeze(Admin *a,QWidget *parent) :
                                 "padding-left:20px;"       //内边距-字体缩进
                                 "background-color: rgb(255, 255, 255);" //背景颜色
                                 "border:2px solid rgb(20,196,188);border-radius:15px;");//边框粗细-颜色-圆角设置");
-    this->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(240,255,255, 255), stop:1 rgba(240,255,255, 255));");
+    this->setStyleSheet("background-color: qlineargradient"
+                      "(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(240,255,255, 255), stop:1 rgba(240,255,255, 255));");
     //最后显示完成的页面
     this->show();
 }
@@ -59,7 +78,7 @@ void Freeze::on_change_mode_clicked()
         messageBox.warning(0,"Error","已挂失！");
         messageBox.setFixedSize(500,200);
     }else if(ui->change_mode->text()=="解挂"){
-        if(student->status != Student::FREEZE){             //解冻是管理员专有的
+        if(student->status == Student::FREEZE){             //解冻是管理员专有的
             QMessageBox messageBox;
             messageBox.information(0,"Error","只可以解冻！");
             messageBox.setFixedSize(500,200);
@@ -162,16 +181,16 @@ void Freeze::on_query_state_clicked()
                 messageBox.critical(0,"结果","已冻结,请找管理员解冻！");
                 messageBox.setFixedSize(500,200);
                 ui->change_mode->setText("解冻");
+                ui->need_admin_box->setCheckState(Qt::CheckState::Checked);//锁定不可解挂
+                ui->need_admin_box->setCheckable(false);
                 this->student = s;
                 break;
 
             }
             ui->need_admin_box->setCheckable(true);
-
         }
     }
 }
-
 
 void Freeze::on_exit_btn_clicked()
 {
@@ -200,4 +219,3 @@ void Freeze::on_need_admin_box_stateChanged(int arg1)
         ui->change_mode->setText("解挂");
     }
 }
-

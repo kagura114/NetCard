@@ -9,6 +9,7 @@
 #include "viewstudentinfo.h"
 #include "freeze.h"
 #include "usepc.h"
+#include "enterpassword.h"
 namespace Ui {
 class Menu;
 }
@@ -34,6 +35,8 @@ private slots:
     void on_ViewData_clicked();
 
     void refresh_ui();
+    void on_lio_clicked();
+
 private:
     Ui::Menu *ui;
 };

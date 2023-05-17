@@ -42,9 +42,5 @@ private:
     char	attempts;	//尝试登录次数
     string  path;		//保存文件路径
     vector<Student*>* students;	//学生列表
-
 };
-
-
-
 #endif // ADMIN_H

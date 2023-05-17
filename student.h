@@ -46,7 +46,6 @@ public:
     string toNormalTime(chrono::system_clock::time_point t);    //转换时间戳
     string workplace();                                         //获取上机地点
 
-
     //SL
     string GetData();    //获取纯数据
     string GetInfo();    //获取有提示的信息
