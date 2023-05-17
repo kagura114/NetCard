@@ -1,3 +1,10 @@
+/*
+    CreateProject .{h/cpp/ui}
+    创建/读取项目文件夹
+    ~~~~~~~~ <--取决于 bool createnew
+*/
+
+
 #ifndef CREATEPROJECT_H
 #define CREATEPROJECT_H
 

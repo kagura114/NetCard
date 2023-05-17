@@ -81,6 +81,7 @@ Menu::~Menu()
     delete ui;
 }
 
+//控制头部文字，刷新ui
 void Menu::refresh_ui(){
     auto *newP = new Menu(admin);
     if (admin->isLogin())

@@ -64,6 +64,7 @@ Student::Student(string filename){
     }
 }
 
+//解析上机地点
 string Student::workplace()
 {
     string result = "";
@@ -106,8 +107,9 @@ void Student::finish_worktime()
     balance = recharge - cost;
 }
 
+//卡账户状态
 string Student::GetStatus()
-{//卡账户状态
+{
     string result = "";
     switch (status)
     {
@@ -128,6 +130,7 @@ string Student::GetStatus()
         break;
    }
     return result;
+}
 
 string Student::GetInfo()
 {
@@ -140,19 +143,24 @@ string Student::GetInfo()
     result += "学生余额：" + to_string(balance) + "\n";		//余额
     result += "学生卡账户状态："  + GetStatus() + "\n";		//卡账户状态
     result += "学生" + workplace() + "\n";		//上机地点
-    if (start_time==finish_time){
+    if (start_time.time_since_epoch().count()-finish_time.time_since_epoch().count()<=60) //没上过机的两个时间差别极小(创建时两个时间实际差值小于10纳秒)
+    {
         result += "账户创建的时间：" + toNormalTime(start_time) + "\n";	//账户创建的时间
-    }else{
+    }
+    else{
     result += "学生开始上机的时间：" + toNormalTime(start_time) + "\n";		//开始上机的时间
-    result += "学生结束上机的时间：" + toNormalTime(finish_time) + "\n";	//结束上机的时间}
-    return result;}
+    result += "学生结束上机的时间：" + toNormalTime(finish_time) + "\n";	//结束上机的时间
+    }
+    return result;
 }
 
-string Student::toNormalTime(chrono::system_clock::time_point t){//timepoint转化为人类可读的形式
+
+//将timepoint转化为人类可读的形式
+string Student::toNormalTime(chrono::system_clock::time_point t){
     using time_point = std::chrono::system_clock::time_point;
     const string format = "%Y-%m-%d %H:%M:%S";
     std::time_t tt = std::chrono::system_clock::to_time_t(t);
-    std::tm tm = *std::localtime(&tt); //GMT+8
+    std::tm tm = *std::localtime(&tt); //使用系统提供的时区
     std::stringstream ss;
     ss << std::put_time(&tm, format.c_str());
     return ss.str();

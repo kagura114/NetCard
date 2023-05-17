@@ -40,7 +40,7 @@ Welcome::~Welcome()
 void Welcome::on_NewFile_clicked()
 {
     this->close();//关闭当前界面
-    auto* c = new CreateProject(nullptr,true);
+    auto* c = new CreateProject(nullptr,true);  //true控制是否前往新建流程
     c->show();
 }
 

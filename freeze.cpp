@@ -149,6 +149,7 @@ void Freeze::on_query_state_clicked()
             messageBox.critical(0,"Error","无法查询到所要的学号");
             messageBox.setFixedSize(500,200);
         }else{
+            bool canUnlockBtn = true;
             QMessageBox messageBox;
             switch(s->status){
             case Student::status::LOGIN: //上机
@@ -183,11 +184,14 @@ void Freeze::on_query_state_clicked()
                 ui->change_mode->setText("解冻");
                 ui->need_admin_box->setCheckState(Qt::CheckState::Checked);//锁定不可解挂
                 ui->need_admin_box->setCheckable(false);
+                ui->change_mode->setText("解冻");
+                canUnlockBtn = false;
                 this->student = s;
                 break;
 
             }
-            ui->need_admin_box->setCheckable(true);
+            if(canUnlockBtn)
+                ui->need_admin_box->setCheckable(true);
         }
     }
 }
@@ -213,9 +217,13 @@ void Freeze::on_need_admin_box_stateChanged(int arg1)
         ui->change_mode->setText("冻结");
     }else if(ui->change_mode->text()=="解挂"&&ui->need_admin_box->isChecked()){
         ui->change_mode->setText("解冻");
-    }else if(ui->change_mode->text()=="冻结"&&!ui->need_admin_box->isChecked()){
+    }
+    /*else if(ui->change_mode->text()=="冻结"&&!ui->need_admin_box->isChecked()){
         ui->change_mode->setText("挂失");
     }else if(ui->change_mode->text()=="解冻"&&!ui->need_admin_box->isChecked()){
-        ui->change_mode->setText("解挂");
-    }
+        if(student==nullptr)
+            ui->change_mode->setText("解挂");
+        else if(student->status!=Student::FREEZE)
+            ui->change_mode->setText("解挂");
+    }*/
 }

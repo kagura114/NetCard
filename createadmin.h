@@ -1,3 +1,9 @@
+/*
+    CreateAdmin .{h/cpp/ui}
+    创建管理员页面
+*/
+
+
 #ifndef CREATEADMIN_H
 #define CREATEADMIN_H
 

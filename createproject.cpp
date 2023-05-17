@@ -68,6 +68,7 @@ void CreateProject::on_Enter_clicked()
     std::string file = Pa.toStdString();
     bool success = true;
 
+    //只有新建才会尝试创建文件夹
     if (createnew){
         try {
             std::filesystem::create_directory(file);
@@ -127,6 +128,6 @@ void CreateProject::on_Restart_clicked()
 {
     //切换模式
     this->close();//关闭当前界面
-    auto* c = new CreateProject(nullptr,!this->createnew);
+    auto* c = new CreateProject(nullptr,!this->createnew);  //反转创建控制位
     c->show();
 }

@@ -1,3 +1,9 @@
+/*
+    Welcome .{h/cpp/ui}
+    欢迎界面
+    前往创建/读取项目页面
+*/
+
 #ifndef WELCOME_H
 #define WELCOME_H
 
