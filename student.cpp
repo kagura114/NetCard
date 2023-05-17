@@ -143,11 +143,12 @@ string Student::GetInfo()
     result += "学生余额：" + to_string(balance) + "\n";		//余额
     result += "学生卡账户状态："  + GetStatus() + "\n";		//卡账户状态
     result += "学生" + workplace() + "\n";		//上机地点
-    if (start_time.time_since_epoch().count()-finish_time.time_since_epoch().count()<=60) //没上过机的两个时间差别极小(创建时两个时间实际差值小于10纳秒)
+    if (start_time.time_since_epoch().count()-finish_time.time_since_epoch().count()<=60) //没上过机的两个时间差别极小(创建时两个时间实际差值小于50纳秒)
     {
         result += "账户创建的时间：" + toNormalTime(start_time) + "\n";	//账户创建的时间
     }
-    else{
+    else
+    {
     result += "学生开始上机的时间：" + toNormalTime(start_time) + "\n";		//开始上机的时间
     result += "学生结束上机的时间：" + toNormalTime(finish_time) + "\n";	//结束上机的时间
     }

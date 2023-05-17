@@ -20,10 +20,10 @@ CreateAdmin::CreateAdmin(string Path,QWidget *parent) :
                                     "border:2px solid rgb(20,196,188);");//边框粗细-颜色-圆角设置
      ui->Passwd->setEchoMode(QLineEdit::Password);//输入密码为黑点
      ui->Passwd->setStyleSheet("font: 20 20pt '微软雅黑 regular';" //字体
-                                  "color: rgb(31,31,31);"  //字体颜色
-                                  "padding-left:20px;"       //内边距-字体缩进
-                                  "background-color: rgb(255, 255, 255);" //背景颜色
-                                  "border:2px solid rgb(20,196,188);border-radius:15px;");//边框粗细-颜色-圆角设置");
+                               "color: rgb(31,31,31);"  //字体颜色
+                               "padding-left:20px;"       //内边距-字体缩进
+                               "background-color: rgb(255, 255, 255);" //背景颜色
+                               "border:2px solid rgb(20,196,188);border-radius:15px;");//边框粗细-颜色-圆角设置");
     this->setStyleSheet("background-color: qlineargradient"
                       "(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(250,240,230, 255), stop:1 rgba(250,240,230, 255));");
 }
